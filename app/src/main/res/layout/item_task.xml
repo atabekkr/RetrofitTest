@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="Retrofit uyreniw"
+        android:fontFamily="@font/montserat_black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_delete"
+        app:layout_constraintBottom_toBottomOf="@id/iv_delete"
+        android:layout_marginStart="16dp" />
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#DA0335"
+        android:paddingVertical="8dp"
+        android:layout_margin="8dp"
+        />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/is_done"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        app:layout_constraintEnd_toStartOf="@id/iv_delete"
+        app:layout_constraintTop_toTopOf="@id/iv_delete"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_delete" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

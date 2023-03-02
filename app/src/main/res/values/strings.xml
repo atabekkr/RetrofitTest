@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Retrofit Test</string>
+    <string name="text_welcome">WELCOME</string>
+    <string name="text_phone">Phone</string>
+    <string name="text_password">Password</string>
+    <string name="text_login">LOGIN</string>
+    <string name="text_logup">Don\'t have an account? Sign Up</string>
+    <string name="text_name">Name</string>
+</resources>
