@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.retrofittest.R
+import com.example.retrofittest.data.local.LocalStorage
 import kotlinx.coroutines.delay
 
 class SplashFragment : Fragment(R.layout.fragment_splash) {
@@ -16,9 +17,13 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
         lifecycleScope.launchWhenResumed {
             delay(2000)
+            if (LocalStorage().isLogin) {
+                SplashFragmentDirections.actionSplashFragmentToTasksFragment()
+            } else {
                 findNavController().navigate(
-                    R.id.action_splashFragment_to_loginFragment
+                    SplashFragmentDirections.actionSplashFragmentToLoginFragment()
                 )
+            }
 
         }
     }

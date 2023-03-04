@@ -2,10 +2,7 @@ package com.example.retrofittest.domain
 
 import android.util.Log
 import com.example.retrofittest.data.local.LocalStorage
-import com.example.retrofittest.data.models.CreateTaskBodyData
-import com.example.retrofittest.data.models.LoginRequestBodyData
-import com.example.retrofittest.data.models.RegisterRequestBodyData
-import com.example.retrofittest.data.models.ResultData
+import com.example.retrofittest.data.models.*
 import com.example.retrofittest.retrofit.TodoApi
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -24,7 +21,7 @@ class MainRepository(private val api: TodoApi) {
         } else {
             emit(ResultData.Message(responce.message()))
         }
-    } .catch {
+    }.catch {
         emit(ResultData.Error(it))
     }
 
@@ -47,18 +44,38 @@ class MainRepository(private val api: TodoApi) {
         if (responce.isSuccessful) {
             emit(ResultData.Success(responce.body()!!.payload.token))
         } else {
+            Log.d("usinday", "ne boldi")
             emit(ResultData.Message(responce.message()))
         }
     }
 
     suspend fun createTask(description: String, task: String) = flow {
         val responce =
-            api.createTask(CreateTaskBodyData(description = description, task = task), "Bearer ${LocalStorage().token}")
+            api.createTask(
+                CreateTaskBodyData(description = description, task = task),
+                "Bearer ${LocalStorage().token}"
+            )
 
         if (responce.isSuccessful) {
             emit(ResultData.Success(responce.body()!!.payload.description))
         } else {
             emit(ResultData.Message(responce.message()))
         }
+    }
+
+    suspend fun deleteTask(id: Int) {
+        api.deleteTask("Bearer ${LocalStorage().token}", id)
+    }
+
+    suspend fun updateIsDone(isDone: Boolean, id: Int) {
+        api.updateIsDone(DoneRequestBodyData(isDone), "Bearer ${LocalStorage().token}", id)
+    }
+
+    suspend fun updateTask(desc: String, task: String, id: Int) {
+        api.updateTask(
+            CreateTaskBodyData(description = desc, task = task),
+            token = "Bearer ${LocalStorage().token}",
+            id = id
+        )
     }
 }

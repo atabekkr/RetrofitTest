@@ -1,4 +1,4 @@
-package com.example.retrofittest.ui
+package com.example.retrofittest.ui.tasks
 
 import android.os.Bundle
 import android.view.View
@@ -13,7 +13,6 @@ import com.example.retrofittest.presentation.TasksViewModel
 import com.example.retrofittest.ui.adapters.TaskAdapter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TasksFragment : Fragment(R.layout.fragment_tasks) {
 
@@ -39,11 +38,11 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
             ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
         )[TasksViewModel::class.java]
 
+        initObservers()
+
         lifecycleScope.launchWhenResumed {
             viewModel.getAllTasks()
         }
-
-        initObservers()
 
         binding.fab.setOnClickListener {
             findNavController().navigate(
@@ -51,9 +50,10 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
             )
         }
 
-        adapter.setOnItemClickListener {
+
+        adapter.setOnItemClickListener { id, task, desc ->
             findNavController().navigate(
-                R.id.action_tasksFragment_to_editFragment
+                TasksFragmentDirections.actionTasksFragmentToEditFragment(id, task, desc)
             )
         }
 

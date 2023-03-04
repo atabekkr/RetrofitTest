@@ -1,4 +1,4 @@
-package com.example.retrofittest.ui
+package com.example.retrofittest.ui.tasks
 
 import android.os.Bundle
 import android.view.View
@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.retrofittest.R
 import com.example.retrofittest.databinding.FragmentCreateTaskBinding
 import com.example.retrofittest.presentation.TasksViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreateTaskFragment : Fragment(R.layout.fragment_create_task) {
 

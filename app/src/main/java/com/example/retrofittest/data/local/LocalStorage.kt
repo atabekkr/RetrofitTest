@@ -2,6 +2,7 @@ package com.example.retrofittest.data.local
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.chatappwithfirebase.utils.BooleanPreference
 import com.example.chatappwithfirebase.utils.StringPreference
 import com.example.retrofittest.app.App
 
@@ -13,4 +14,6 @@ class LocalStorage {
     }
 
     var token by StringPreference(prefs, "Nothing to show")
+
+    var isLogin by BooleanPreference(prefs, false)
 }

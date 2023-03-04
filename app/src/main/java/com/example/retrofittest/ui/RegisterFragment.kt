@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.retrofittest.R
+import com.example.retrofittest.data.local.LocalStorage
 import com.example.retrofittest.databinding.FragmentRegisterBinding
 import com.example.retrofittest.presentation.MainViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -37,20 +38,23 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
 
         binding.apply {
-            btnRegister.setOnClickListener {
-                if (etName.text.toString().isNotEmpty() && etPassword.text.toString()
+
+            btnBackToLogin.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            fab.setOnClickListener {
+                if (etUsername.text.toString().isNotEmpty() && etPassword.text.toString()
                         .isNotEmpty() && etPhone.text.toString().isNotEmpty()
                 ) {
                     lifecycleScope.launchWhenResumed {
                         viewModel.isSuccess(
-                            name = etName.text.toString(),
+                            name = etUsername.text.toString(),
                             password = etPassword.text.toString(),
                             phone = etPhone.text.toString()
                         )
                     }
-                    findNavController().navigate(
-                        R.id.action_registerFragment_to_tasksFragment
-                    )
+
                 } else {
                     Toast.makeText(requireContext(), "Toltirin", Toast.LENGTH_SHORT).show()
                 }
@@ -60,8 +64,17 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private fun initObservers() {
         viewModel.getSuccessFlow.onEach {
-            Log.w("TTTT", it)
+            LocalStorage().token = it
+            LocalStorage().isLogin = true
+            findNavController().navigate(
+                R.id.action_registerFragment_to_tasksFragment
+            )
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }.launchIn(lifecycleScope)
+
+
+        viewModel.getMessageFlow.onEach {
+            toast("Siz bul nomerden register qilip bolg'ansiz")
         }.launchIn(lifecycleScope)
     }
 }

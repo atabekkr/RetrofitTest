@@ -4,37 +4,52 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <EditText
         android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/text_name"
-        android:fontFamily="@font/montserat_black"
+        android:hint="task"
+        android:fontFamily="@font/font_bold"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32sp"
-        android:textSize="32sp" />
+        android:layout_marginHorizontal="16dp"/>
 
-    <TextView
+    <EditText
         android:id="@+id/tv_desc"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name"
-        android:text="Description"
-        android:fontFamily="@font/montserat_black"
+        android:hint="description"
+        android:fontFamily="@font/font_bold"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="32sp" />
+        android:layout_marginHorizontal="16dp"/>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/is_done"
+        android:layout_marginHorizontal="16dp"
+        app:cornerRadius="16dp"
+        android:backgroundTint="#2196F3"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/black"
+        android:text="save" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/is_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/btn_delete"
         android:layout_marginHorizontal="16dp"
         app:cornerRadius="16dp"
         android:backgroundTint="#10B817"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/black"
         android:text="done" />
 
     <com.google.android.material.button.MaterialButton
@@ -46,6 +61,8 @@
         android:layout_marginBottom="16dp"
         app:cornerRadius="16dp"
         android:backgroundTint="#EF1B0C"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/black"
         android:text="DELETE"  />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

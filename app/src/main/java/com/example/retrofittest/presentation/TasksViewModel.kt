@@ -59,4 +59,16 @@ class TasksViewModel(application: Application) : AndroidViewModel(application) {
         }.launchIn(viewModelScope)
     }
 
+    suspend fun deleteTask(id: Int) {
+        repo.deleteTask(id)
+    }
+
+    suspend fun updateIsDone(isDone: Boolean, id: Int) {
+        repo.updateIsDone(isDone, id)
+    }
+
+    suspend fun updateTask(desc: String, task: String, id: Int) {
+        repo.updateTask(desc, task, id)
+    }
+
 }

@@ -1,9 +1,11 @@
 package com.example.retrofittest.presentation
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.retrofittest.data.local.LocalStorage
 import com.example.retrofittest.data.models.ResultData
 import com.example.retrofittest.domain.MainRepository
 import com.example.retrofittest.retrofit.RetrofitHelper
@@ -41,7 +43,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     suspend fun isLogin(phone: String, password: String) {
+        Log.e("usinday", "---------->}")
         repo.loginApi(phone, password).onEach {
+
             when (it) {
                 is ResultData.Success -> {
                     getLoginFlow.emit(it.data)
