@@ -30,8 +30,8 @@ class MainRepository(private val api: TodoApi) {
             api.registerApi(RegisterRequestBodyData(name, password, phone))
 
         if (responce.isSuccessful) {
-            LocalStorage().token = responce.body()!!.payload.token
-            emit(ResultData.Success(responce.body()!!.message))
+            //LocalStorage().token = responce.body()!!.payload.token
+            emit(ResultData.Success(responce.body()!!.payload.token))
         } else {
             emit(ResultData.Message(responce.message()))
         }
@@ -44,7 +44,6 @@ class MainRepository(private val api: TodoApi) {
         if (responce.isSuccessful) {
             emit(ResultData.Success(responce.body()!!.payload.token))
         } else {
-            Log.d("usinday", "ne boldi")
             emit(ResultData.Message(responce.message()))
         }
     }
@@ -68,7 +67,7 @@ class MainRepository(private val api: TodoApi) {
     }
 
     suspend fun updateIsDone(isDone: Boolean, id: Int) {
-        api.updateIsDone(DoneRequestBodyData(isDone), "Bearer ${LocalStorage().token}", id)
+        api.updateIsDone(id, "Bearer ${LocalStorage().token}", DoneRequestBodyData(isDone))
     }
 
     suspend fun updateTask(desc: String, task: String, id: Int) {

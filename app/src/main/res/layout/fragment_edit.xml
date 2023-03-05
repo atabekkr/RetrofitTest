@@ -50,7 +50,7 @@
         android:backgroundTint="#10B817"
         app:strokeWidth="2dp"
         app:strokeColor="@color/black"
-        android:text="done" />
+        android:text="not done" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_delete"

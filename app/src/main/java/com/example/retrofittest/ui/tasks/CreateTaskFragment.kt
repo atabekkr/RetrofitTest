@@ -27,7 +27,6 @@ class CreateTaskFragment : Fragment(R.layout.fragment_create_task) {
 
         binding.apply {
 
-
             btnCreate.setOnClickListener {
                 val task = etTask.text.toString()
                 val desc = etDesc.text.toString()

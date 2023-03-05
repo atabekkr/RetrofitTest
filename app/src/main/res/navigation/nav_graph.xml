@@ -54,7 +54,9 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_splashFragment_to_tasksFragment"
-            app:destination="@id/tasksFragment" />
+            app:destination="@id/tasksFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/editFragment"

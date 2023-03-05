@@ -43,7 +43,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     suspend fun isLogin(phone: String, password: String) {
-        Log.e("usinday", "---------->}")
         repo.loginApi(phone, password).onEach {
 
             when (it) {

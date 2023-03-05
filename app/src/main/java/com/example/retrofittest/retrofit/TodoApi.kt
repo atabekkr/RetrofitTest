@@ -34,9 +34,9 @@ interface TodoApi {
 
     @PUT("/api/tasks/{id}")
     suspend fun updateIsDone(
-        @Body body: DoneRequestBodyData,
+        @Path("id") id: Int,
         @Header("Authorization") token: String,
-        @Path("id") id: Int
+        @Body body: DoneRequestBodyData
     )
 
     @PATCH("/api/tasks/{id}")

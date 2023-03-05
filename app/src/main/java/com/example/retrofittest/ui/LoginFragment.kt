@@ -69,6 +69,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun initObservers() {
         viewModel.getLoginFlow.onEach {
+            Log.d("YYYY", "${LocalStorage().token} -- ")
+            Log.d("YYYY", it)
             LocalStorage().token = it
             LocalStorage().isLogin = true
             findNavController().navigate(

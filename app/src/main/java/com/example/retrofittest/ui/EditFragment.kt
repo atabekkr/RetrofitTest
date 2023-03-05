@@ -1,6 +1,8 @@
 package com.example.retrofittest.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -8,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.retrofittest.R
+import com.example.retrofittest.data.local.LocalStorage
 import com.example.retrofittest.databinding.FragmentEditBinding
 import com.example.retrofittest.presentation.TasksViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -18,6 +21,7 @@ class EditFragment : Fragment(R.layout.fragment_edit) {
     private  val navArgs: EditFragmentArgs by navArgs()
     private lateinit var viewModel: TasksViewModel
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -57,8 +61,16 @@ class EditFragment : Fragment(R.layout.fragment_edit) {
             }
 
             isDone.setOnClickListener {
+                if (LocalStorage().isDone) {
+                    isDone.text = "Not Done"
+                    LocalStorage().isDone = false
+                } else {
+                    LocalStorage().isDone = true
+                    isDone.text = "Done"
+                }
                 lifecycleScope.launchWhenResumed {
-                    viewModel.updateIsDone(true, id)
+                    Log.d("Warrr", "${LocalStorage().isDone}")
+                    viewModel.updateIsDone(LocalStorage().isDone, id)
                 }
             }
         }
