@@ -40,6 +40,10 @@ class CreateTaskFragment : Fragment(R.layout.fragment_create_task) {
                     Toast.makeText(requireContext(), "Toltir", Toast.LENGTH_SHORT).show()
                 }
             }
+
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 }

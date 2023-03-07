@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.retrofittest.R
+import com.example.retrofittest.data.models.TaskData
 import com.example.retrofittest.databinding.FragmentTasksBinding
 import com.example.retrofittest.presentation.TasksViewModel
 import com.example.retrofittest.ui.adapters.TaskAdapter
@@ -19,6 +20,7 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
     private lateinit var binding: FragmentTasksBinding
     private lateinit var viewModel: TasksViewModel
     private val adapter = TaskAdapter()
+    private lateinit var list: List<TaskData>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,20 +53,12 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
         }
 
 
-        adapter.setOnItemClickListener { id, task, desc ->
+        adapter.setOnItemClickListener {
             findNavController().navigate(
-                TasksFragmentDirections.actionTasksFragmentToEditFragment(id, task, desc)
+                TasksFragmentDirections.actionTasksFragmentToEditFragment(it.id, it.task, it.description, it.isDone)
             )
         }
 
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        lifecycleScope.launchWhenResumed {
-            viewModel.getAllTasks()
-        }
     }
 
     private fun initObservers() {

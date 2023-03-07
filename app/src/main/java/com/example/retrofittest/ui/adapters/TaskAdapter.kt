@@ -20,7 +20,7 @@ class TaskAdapter : ListAdapter<TaskData, TaskAdapter.TaskViewHolder>(diffCallBa
             binding.tvDesc.text = d.description
 
             binding.root.setOnClickListener {
-                onClick.invoke(d.id, d.task, d.description)
+                onClick.invoke(d)
             }
 
         }
@@ -51,8 +51,8 @@ class TaskAdapter : ListAdapter<TaskData, TaskAdapter.TaskViewHolder>(diffCallBa
 
     }
 
-    var onClick:(id: Int, task: String, desc: String) -> Unit = {_, _, _ ->}
-    fun setOnItemClickListener(onClick: (id: Int, task: String, desc: String) -> Unit) {
+    var onClick:(TaskData) -> Unit = {}
+    fun setOnItemClickListener(onClick: (TaskData) -> Unit) {
         this.onClick = onClick
     }
 }

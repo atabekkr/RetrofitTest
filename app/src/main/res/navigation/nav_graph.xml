@@ -17,7 +17,7 @@
             android:id="@+id/action_loginFragment_to_tasksFragment"
             app:destination="@id/tasksFragment"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -26,7 +26,8 @@
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_tasksFragment"
-            app:destination="@id/tasksFragment" />
+            app:destination="@id/tasksFragment"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/tasksFragment"
@@ -72,5 +73,8 @@
         <argument
             android:name="desc"
             app:argType="string" />
+        <argument
+            android:name="bool"
+            app:argType="boolean" />
     </fragment>
 </navigation>

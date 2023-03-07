@@ -19,4 +19,6 @@ class LocalStorage {
     var isLogin by BooleanPreference(prefs, false)
 
     var isDone by BooleanPreference(prefs, false)
+
+    var desc by StringPreference(prefs, "")
 }

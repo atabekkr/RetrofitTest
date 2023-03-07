@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/color_toolbar"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:padding="12dp"
+            android:background="?attr/actionBarItemBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_back"
+            app:tint="@color/white"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Task Edit"
+            android:singleLine="true"
+            android:textSize="24sp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/font_bold"
+            app:layout_constraintStart_toEndOf="@id/iv_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_back"
+            app:layout_constraintBottom_toBottomOf="@id/iv_back" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_task"
@@ -25,9 +64,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:paddingVertical="8dp"
+        android:backgroundTint="#3C5E78"
         app:cornerRadius="16dp"
         android:text="create" />
-
-
 
 </LinearLayout>

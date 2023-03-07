@@ -35,10 +35,17 @@ class EditFragment : Fragment(R.layout.fragment_edit) {
         val id = navArgs.id
         val task = navArgs.task
         val desc = navArgs.desc
+        val bool = navArgs.bool
+
+        Log.d("TTTT", "$bool")
 
         binding.apply{
             tvName.setText(task)
             tvDesc.setText(desc)
+
+            if (bool) {
+                isDone.text = "not done"
+            } else isDone.text = "done"
 
             btnSave.setOnClickListener {
                 val newTask = tvName.text.toString()
@@ -61,17 +68,19 @@ class EditFragment : Fragment(R.layout.fragment_edit) {
             }
 
             isDone.setOnClickListener {
-                if (LocalStorage().isDone) {
-                    isDone.text = "Not Done"
-                    LocalStorage().isDone = false
-                } else {
-                    LocalStorage().isDone = true
-                    isDone.text = "Done"
-                }
+
                 lifecycleScope.launchWhenResumed {
-                    Log.d("Warrr", "${LocalStorage().isDone}")
-                    viewModel.updateIsDone(LocalStorage().isDone, id)
+                    if (bool) {
+                        viewModel.updateIsDone(false, id)
+                    } else {
+                        viewModel.updateIsDone(true, id)
+                    }
                 }
+                findNavController().popBackStack()
+            }
+
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
 
